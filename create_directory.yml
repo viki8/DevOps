@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  tasks:
+  - name: creating directory
+    command: mkdir -p /opt/dispatcher

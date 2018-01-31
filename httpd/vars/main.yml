@@ -1,0 +1,8 @@
+---
+domain: mahesh.com
+domain1: deshmukh.com
+domain2: baykoo.com
+vhost: /etc/httpd/conf.d/vhost
+confd: /etc/httpd/conf.d
+conf: /etc/httpd/conf
+modules: /etc/httpd/modules

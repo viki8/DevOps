@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  tasks:
+  - name: copy files
+    copy: 
+      src: "{{ item }}"
+      dest: "/opt/test2/"
+    with_fileglob:
+      - "/opt/test/*"

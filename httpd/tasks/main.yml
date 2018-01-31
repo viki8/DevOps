@@ -1,0 +1,40 @@
+---
+- name: install the latest version of Apache
+  yum:
+      name: httpd
+      state: latest
+  notify:
+   - start httpd
+
+- name: copy index.html file
+  copy: src=index.html dest=/var/www/html/{{ domain }}.html
+  ignore_errors: True
+  
+- name: copy httpd.conf
+  copy: src={{ item }} dest={{ conf }}
+  with_fileglob:
+         - "httpd.conf"
+                
+- name: copy dispatcher files
+  copy: src={{ item }} dest={{ confd }}
+  with_fileglob:
+         - "dispatcher.*"
+                 
+- name: copy dispatcher files
+  copy: src={{ item }} dest={{ modules }}
+  with_fileglob:
+         - "mod_dispatcher.so"           
+
+- name: create directory
+  command: mkdir {{ vhost }}
+  ignore_errors: True
+
+
+- name: create empty files
+  file: path=/var/www/html/{{ item }}.txt state=touch
+  with_items:
+      - "{{ domain1 }}"
+      - "{{ domain2 }}"
+  notify:
+    - restart httpd
+

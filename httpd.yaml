@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  remote_user: root
+  tasks:
+   - name: install the latest version of Apache
+     yum:
+         name: httpd
+         state: latest
+   - name: start the httpd service
+     service: 
+             name: httpd 
+             state: started
